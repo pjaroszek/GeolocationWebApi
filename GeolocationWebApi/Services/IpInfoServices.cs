@@ -1,10 +1,10 @@
-﻿using GeolocationWebApi.Interfaces;
-using GeolocationWebApi.Models;
+﻿using GeolocationWebApi.Models;
+using Jaroszek.ProofOfConcept.GeolocationWebApi.Interfaces;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net;
 
-namespace GeolocationWebApi.Services
+namespace Jaroszek.ProofOfConcept.GeolocationWebApi.Services
 {
     public class IpInfoServices : IIpInfoServices
     {

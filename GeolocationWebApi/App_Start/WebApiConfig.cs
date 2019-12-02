@@ -1,7 +1,8 @@
-﻿using System.Web.Http;
-
-namespace GeolocationWebApi
+﻿
+namespace Jaroszek.ProofOfConcept.GeolocationWebApi
 {
+    using System.Web.Http;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)

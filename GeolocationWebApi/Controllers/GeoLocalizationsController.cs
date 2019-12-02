@@ -1,6 +1,6 @@
-﻿using GeolocationWebApi.Interfaces;
-using GeolocationWebApi.Models;
-using GeolocationWebApi.Services;
+﻿using GeolocationWebApi.Models;
+using Jaroszek.ProofOfConcept.GeolocationWebApi.Interfaces;
+using Jaroszek.ProofOfConcept.GeolocationWebApi.Services;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -8,7 +8,8 @@ using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
 
-namespace GeolocationWebApi.Controllers
+
+namespace Jaroszek.ProofOfConcept.GeolocationWebApi.Controllers
 {
     public class GeoLocalizationsController : ApiController
     {
@@ -25,8 +26,9 @@ namespace GeolocationWebApi.Controllers
         [ResponseType(typeof(GeoLocalization))]
         public IHttpActionResult GetGeoLocalization(string url)
         {
-            GeoLocalization geoLocalization = db.GeoLocalizations.Find(url);
-            if (geoLocalization == null)
+            var geoLocalization = db.GeoLocalizations.Where(x => x.url == url);
+
+            if (geoLocalization.Count() == 0)
             {
                 return NotFound();
             }
@@ -36,19 +38,30 @@ namespace GeolocationWebApi.Controllers
 
         // PUT: api/GeoLocalizations/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutGeoLocalization(int id, GeoLocalization geoLocalization)
+        public IHttpActionResult PutGeoLocalization(string url, GeoLocalization geoLocalization)
         {
+            GeoLocalization geo = new GeoLocalization();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != geoLocalization.id)
+            if (geoLocalization != null)
+            {
+                geo = geoLocalization;
+            }
+            else
+            {
+                geo = db.GeoLocalizations.First(x => x.url == url);
+            }
+
+
+            if (url != geo.url)
             {
                 return BadRequest();
             }
 
-            db.Entry(geoLocalization).State = EntityState.Modified;
+            db.Entry(geo).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +69,7 @@ namespace GeolocationWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GeoLocalizationExists(id))
+                if (!GeoLocalizationExists(url))
                 {
                     return NotFound();
                 }
@@ -109,15 +122,19 @@ namespace GeolocationWebApi.Controllers
 
         // DELETE: api/GeoLocalizations/5
         [ResponseType(typeof(GeoLocalization))]
-        public IHttpActionResult DeleteGeoLocalization(int id)
+        public IHttpActionResult DeleteGeoLocalization(string url)
         {
-            GeoLocalization geoLocalization = db.GeoLocalizations.Find(id);
-            if (geoLocalization == null)
+            var geoLocalization = db.GeoLocalizations.Where(u => u.url == url);
+            if (geoLocalization.Count() == 0)
             {
                 return NotFound();
             }
 
-            db.GeoLocalizations.Remove(geoLocalization);
+            foreach (var item in geoLocalization)
+            {
+                db.GeoLocalizations.Remove(item);
+            }
+
             db.SaveChanges();
 
             return Ok(geoLocalization);
@@ -135,6 +152,11 @@ namespace GeolocationWebApi.Controllers
         private bool GeoLocalizationExists(int id)
         {
             return db.GeoLocalizations.Count(e => e.id == id) > 0;
+        }
+
+        private bool GeoLocalizationExists(string url)
+        {
+            return db.GeoLocalizations.Count(e => e.url == url) > 0;
         }
     }
 }

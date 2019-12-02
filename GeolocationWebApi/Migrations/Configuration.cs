@@ -1,18 +1,16 @@
-namespace GeolocationWebApi.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using GeolocationWebApi.Models;
+using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<GeolocationWebApi.Models.GeoLocalizationContexr>
+namespace Jaroszek.ProofOfConcept.GeolocationWebApi.Migrations
+{
+    internal sealed class Configuration : DbMigrationsConfiguration<GeoLocalizationContexr>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(GeolocationWebApi.Models.GeoLocalizationContexr context)
+        protected override void Seed(global::GeolocationWebApi.Models.GeoLocalizationContexr context)
         {
             //  This method will be called after migrating to the latest version.
 
