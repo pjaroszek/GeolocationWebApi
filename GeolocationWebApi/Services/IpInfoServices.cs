@@ -1,15 +1,18 @@
-﻿using GeolocationWebApi.Models;
+﻿using GeolocationWebApi.Interfaces;
+using GeolocationWebApi.Models;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net;
 
 namespace GeolocationWebApi.Services
 {
-    public class IpInfoServices
+    public class IpInfoServices : IIpInfoServices
     {
         private readonly string SERVICE_ADRESS = Properties.Settings.Default.ServiceAddress;
-        private readonly string KEY_TO_SERVICE = $"?access_key={Properties.Settings.Default.KeyToService}";
+        private readonly string KEY_TO_SERVICE = Properties.Settings.Default.KeyToService;
         private string urlIpInfo;
+
+
         public GeoLocalization GetDataIpInfo(string url)
         {
             IPHostEntry hosts = Dns.GetHostEntry(url);
@@ -17,7 +20,7 @@ namespace GeolocationWebApi.Services
 
             if (!string.IsNullOrEmpty(KEY_TO_SERVICE))
             {
-                urlIpInfo = SERVICE_ADRESS + ipFromUrl + KEY_TO_SERVICE;
+                urlIpInfo = SERVICE_ADRESS + ipFromUrl + $"?access_key={KEY_TO_SERVICE}";
             }
             else
             {

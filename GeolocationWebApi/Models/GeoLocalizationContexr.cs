@@ -4,7 +4,7 @@ namespace GeolocationWebApi.Models
 {
     public class GeoLocalizationContexr : DbContext
     {
-        private static string connectionString = @"Data Source .; Initial Catalog=Test;Integrated Seciurity =True";
+        private static string connectionString = @"Data Source=PAWEL-PC\SQL2017;Initial Catalog=Test;Integrated Security=True";
 
 
         public GeoLocalizationContexr() : base(connectionString) { }
