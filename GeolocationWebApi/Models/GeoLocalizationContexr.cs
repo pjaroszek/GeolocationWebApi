@@ -6,6 +6,7 @@ namespace GeolocationWebApi.Models
     {
         private static string connectionString = @"Data Source .; Initial Catalog=Test;Integrated Seciurity =True";
 
+
         public GeoLocalizationContexr() : base(connectionString) { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
