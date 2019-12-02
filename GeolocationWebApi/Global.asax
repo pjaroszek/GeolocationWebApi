@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="GeolocationWebApi.WebApiApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Jaroszek.ProofOfConcept.GeolocationWebApi.WebApiApplication" Language="C#" %>
