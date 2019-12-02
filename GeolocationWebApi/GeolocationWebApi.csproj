@@ -95,6 +95,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GeoLocalization.cs" />
+    <Compile Include="Models\GeoLocalizationContexr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
