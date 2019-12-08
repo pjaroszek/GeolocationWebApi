@@ -1,7 +1,7 @@
-using System.Web.Http;
-using WebActivatorEx;
 using Jaroszek.ProofOfConcept.GeolocationWebApi;
 using Swashbuckle.Application;
+using System.Web.Http;
+using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -32,7 +32,7 @@ namespace Jaroszek.ProofOfConcept.GeolocationWebApi
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
                         //
-                        c.SingleApiVersion("v1", "Jaroszek.ProofOfConcept.GeolocationWebApi");
+                        c.SingleApiVersion("v1", "GeolocationWebApi UI");
 
                         // If you want the output Swagger docs to be indented properly, enable the "PrettyPrint" option.
                         //
@@ -61,7 +61,7 @@ namespace Jaroszek.ProofOfConcept.GeolocationWebApi
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
